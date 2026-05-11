@@ -80,6 +80,11 @@
             transform: rotateY(180deg);
             border: 2px solid #10b981;
         }
+
+        /* Nav Buttons */
+        .nav-btn {
+            @apply px-6 py-2 rounded-full border border-white text-white transition-all duration-300 hover:bg-white hover:text-green-900;
+        }
     </style>
 </head>
 <body class="text-slate-800">
@@ -88,7 +93,21 @@
     <header class="hero-bg flex items-center justify-center text-center text-white p-6">
         <div>
             <h1 class="text-4xl md:text-6xl font-bold mb-4">독도 문제의 역사적 전개와 갈등 해소</h1>
-            <p class="text-xl md:text-2xl font-light max-w-3xl mx-auto">역사적 근거, 국제적 지위, 그리고 미래를 향한 종합 분석 보고서</p>
+            
+            <!-- Added Navigation Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mt-8">
+                <a href="https://dokdo.mofa.go.kr" target="_blank" class="px-6 py-2 rounded-full border border-white text-white transition-all duration-300 hover:bg-white hover:text-green-900 font-medium">
+                    독도홈페이지
+                </a>
+                <a href="./01/index.html" class="px-6 py-2 rounded-full border border-white text-white transition-all duration-300 hover:bg-white hover:text-green-900 font-medium">
+                    독도연표
+                </a>
+                <a href="./02/02.html" class="px-6 py-2 rounded-full border border-white text-white transition-all duration-300 hover:bg-white hover:text-green-900 font-medium">
+                    독도용어
+                </a>
+            </div>
+
+            <p class="text-xl md:text-2xl font-light max-w-3xl mx-auto mt-8 opacity-90">역사적 근거, 국제적 지위, 그리고 미래를 향한 종합 분석 보고서</p>
         </div>
     </header>
 
