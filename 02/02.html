@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>독도 주요 용어 사전</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc;
+        }
+        h1, h2, h3, .title-font {
+            font-family: 'Hahmlet', serif;
+        }
+        .hero-bg {
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.85), rgba(30, 58, 138, 0.85)), url('https://images.unsplash.com/photo-1544485501-831828cb0cc0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+        }
+        .term-card {
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s forwards;
+        }
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 딜레이를 주어 카드가 순차적으로 나타나게 함 */
+        .term-card:nth-child(1) { animation-delay: 0.05s; }
+        .term-card:nth-child(2) { animation-delay: 0.1s; }
+        .term-card:nth-child(3) { animation-delay: 0.15s; }
+        .term-card:nth-child(4) { animation-delay: 0.2s; }
+        .term-card:nth-child(5) { animation-delay: 0.25s; }
+        .term-card:nth-child(6) { animation-delay: 0.3s; }
+        .term-card:nth-child(7) { animation-delay: 0.35s; }
+        .term-card:nth-child(8) { animation-delay: 0.4s; }
+        .term-card:nth-child(9) { animation-delay: 0.45s; }
+        .term-card:nth-child(n+10) { animation-delay: 0.5s; }
+
+    </style>
+</head>
+<body class="text-slate-800 antialiased overflow-x-hidden">
+
+    <!-- Header Section -->
+    <header class="hero-bg text-white py-24 px-6 text-center shadow-lg relative">
+        <!-- 홈 버튼 -->
+        <a href="../index.html" class="fixed top-4 left-4 md:top-6 md:left-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/50 hover:bg-slate-900/80 backdrop-blur-md transition-all text-sm font-medium text-white z-[100] border border-white/20 shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            홈
+        </a>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <span class="inline-block py-1 px-3 rounded-full bg-blue-500/30 border border-blue-400/50 text-blue-100 text-sm font-semibold tracking-wider mb-4">DOKDO GLOSSARY</span>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-md">독도 주요 용어 사전</h1>
+            <p class="text-lg md:text-xl text-blue-100 font-light max-w-2xl mx-auto">
+                영역, 역사적 명칭, 국제 관계, 지질 등 독도를 이해하기 위해<br>
+                반드시 알아야 할 핵심 용어들을 정리했습니다.
+            </p>
+        </div>
+    </header>
+
+    <!-- Navigation / Filters -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col lg:flex-row items-center justify-between gap-4">
+            
+            <!-- 카테고리 탭 -->
+            <div class="flex justify-center md:justify-start gap-2 overflow-x-auto w-full lg:w-auto pb-1 lg:pb-0 scrollbar-hide">
+                <button onclick="filterTerms('all')" class="filter-btn active px-4 py-2 rounded-full text-sm font-medium transition-colors bg-blue-600 text-white shadow-sm whitespace-nowrap" data-target="all">전체 보기</button>
+                <button onclick="filterTerms('영역')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-slate-100 text-slate-600 hover:bg-slate-200 whitespace-nowrap" data-target="영역">국가 영역</button>
+                <button onclick="filterTerms('명칭')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-slate-100 text-slate-600 hover:bg-slate-200 whitespace-nowrap" data-target="명칭">역사적 명칭</button>
+                <button onclick="filterTerms('국제관계')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-slate-100 text-slate-600 hover:bg-slate-200 whitespace-nowrap" data-target="국제관계">국제 관계/사건</button>
+                <button onclick="filterTerms('지질자원')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-slate-100 text-slate-600 hover:bg-slate-200 whitespace-nowrap" data-target="지질자원">지질 및 자원</button>
+            </div>
+
+            <!-- 검색창 -->
+            <div class="relative w-full lg:w-72 shrink-0">
+                <input type="text" id="searchInput" placeholder="용어 또는 내용 검색..." class="w-full pl-10 pr-4 py-2 rounded-full border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm transition-all bg-white">
+                <svg class="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Section -->
+    <main class="max-w-6xl mx-auto px-4 py-12 relative min-h-[500px]">
+        <div id="terms-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Cards will be injected here -->
+        </div>
+        <div id="no-results" class="hidden text-center text-slate-500 py-20 w-full flex-col items-center">
+            <svg class="w-16 h-16 text-slate-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <p class="text-lg font-medium">검색 결과가 없습니다.</p>
+            <p class="text-sm mt-1">다른 키워드로 검색해보세요.</p>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm mt-auto">
+        <p>&copy; 대한민국 아름다운 섬, 독도. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 용어 데이터
+        const termsData = [
+            // 영역 관련
+            { category: "영역", term: "영토", definition: "국가의 영역이 미치는 지리적 지표상의 범위입니다.", badgeColor: "bg-emerald-100 text-emerald-700 border-emerald-200" },
+            { category: "영역", term: "영해", definition: "해안선으로부터 일정한 범위 내에 있는 바다로, 보통 기선에서 12해리(1해리는 약 1,852m)까지를 의미합니다.", badgeColor: "bg-emerald-100 text-emerald-700 border-emerald-200" },
+            { category: "영역", term: "접속수역", definition: "영해 밖에서 관세, 출입국 관리 등을 위해 국가 통제권을 행사할 수 있는 수역입니다.", badgeColor: "bg-emerald-100 text-emerald-700 border-emerald-200" },
+            { category: "영역", term: "영공", definition: "영토와 영해의 수직 상공으로, 보통 대기권 이내를 말합니다.", badgeColor: "bg-emerald-100 text-emerald-700 border-emerald-200" },
+            { category: "영역", term: "배타적 경제수역 (EEZ)", definition: "영해 바깥쪽 기선에서 200해리까지의 수역입니다. 연안국이 해양 자원의 탐사, 개발, 관리 등에 대해 독점적 권리를 가지며, 타국의 선박과 항공기는 통행의 자유를 가집니다.", badgeColor: "bg-emerald-100 text-emerald-700 border-emerald-200" },
+            { category: "영역", term: "실효적 지배", definition: "독도에 대해 한국 정부가 국가의 권리를 지속적으로 행사하며 실제로 다스리고 있는 상태를 의미합니다.", badgeColor: "bg-emerald-100 text-emerald-700 border-emerald-200" },
+
+            // 역사적 명칭
+            { category: "명칭", subCategory: "조선 및 대한제국", term: "우산도 (于山島)", definition: "삼국시대 우산국에서 유래한 명칭입니다.", badgeColor: "bg-purple-100 text-purple-700 border-purple-200" },
+            { category: "명칭", subCategory: "조선 및 대한제국", term: "가지도 (可支島)", definition: "강치(가재, 가지어)가 많이 살아서 붙여진 이름입니다.", badgeColor: "bg-purple-100 text-purple-700 border-purple-200" },
+            { category: "명칭", subCategory: "조선 및 대한제국", term: "석도 (石島)", definition: "'돌섬'을 한자로 표기한 것이며, 「대한제국 칙령 제41호」에서 독도를 지칭하는 명칭으로 사용되었습니다.", badgeColor: "bg-purple-100 text-purple-700 border-purple-200" },
+            { category: "명칭", subCategory: "조선 및 대한제국", term: "독도 (獨島)", definition: "'돌섬'이나 '독섬'을 한자로 표기하면서 정착된 현재의 명칭입니다.", badgeColor: "bg-purple-100 text-purple-700 border-purple-200" },
+            { category: "명칭", subCategory: "일본 측 명칭", term: "송도 (松島)", definition: "과거 일본이 독도를 부르던 명칭입니다.", badgeColor: "bg-purple-100 text-purple-700 border-purple-200" },
+            { category: "명칭", subCategory: "일본 측 명칭", term: "죽도 (竹島, 다케시마)", definition: "본래 울릉도를 지칭했으나, 1905년 시마네현 고시를 통해 독도의 일본식 공식 지명이 되었습니다.", badgeColor: "bg-purple-100 text-purple-700 border-purple-200" },
+            { category: "명칭", subCategory: "서양의 명칭", term: "리앙쿠르 (Liancourt)", definition: "1849년 프랑스 포경선 리앙쿠르호가 독도를 발견하고 붙인 이름입니다.", badgeColor: "bg-purple-100 text-purple-700 border-purple-200" },
+            { category: "명칭", subCategory: "서양의 명칭", term: "다즐레·아르고노트", definition: "서양 탐험가들이 울릉도를 발견하고 붙인 이름이나, 때로는 독도와 혼동하여 사용하기도 했습니다.", badgeColor: "bg-purple-100 text-purple-700 border-purple-200" },
+
+            // 국제 관계 및 주요 사건
+            { category: "국제관계", term: "SCAPIN 제677호", definition: "1946년 연합군최고사령관이 내린 지령으로, 독도를 일본의 통치 범위에서 제외하여 한국 영토로 분류한 중요한 문서입니다.", badgeColor: "bg-rose-100 text-rose-700 border-rose-200" },
+            { category: "국제관계", term: "평화선 (이승만 라인)", definition: "1952년 한국 정부가 인접 해양의 주권과 어족 자원 보호를 위해 선포한 해상 경계선입니다.", badgeColor: "bg-rose-100 text-rose-700 border-rose-200" },
+            { category: "국제관계", term: "신한일어업협정", definition: "1998년 배타적 경제수역(EEZ) 도입에 따라 체결된 새로운 어업 협정입니다.", badgeColor: "bg-rose-100 text-rose-700 border-rose-200" },
+            { category: "국제관계", term: "중간수역", definition: "한일 양국의 EEZ가 겹치는 부분에 설정한 잠정 수역으로, 독도가 이 수역 안에 포함되면서 영유권 논란이 재점화되는 원인이 되기도 했습니다.", badgeColor: "bg-rose-100 text-rose-700 border-rose-200" },
+            { category: "국제관계", term: "국제사법재판소 (ICJ)", definition: "국가 간의 법적 분쟁을 다루는 국제기구로, 일본은 독도 문제를 이곳에 회부하자고 주장하지만 한국 정부는 독도가 분쟁 지역이 아니라는 입장에서 이를 거부하고 있습니다.", badgeColor: "bg-rose-100 text-rose-700 border-rose-200" },
+
+            // 지질 및 자원
+            { category: "지질자원", term: "해산", definition: "바다 밑바닥에서 솟아오른 산으로, 독도와 울릉도는 해저에서부터 연결된 거대한 해산의 일부분입니다.", badgeColor: "bg-amber-100 text-amber-700 border-amber-200" },
+            { category: "지질자원", term: "조면암", definition: "독도와 울릉도를 구성하는 주요 암석으로, 지질학적으로 두 섬이 유사함을 증명합니다.", badgeColor: "bg-amber-100 text-amber-700 border-amber-200" },
+            { category: "지질자원", term: "가스 하이드레이트", definition: "저온 고압 상태의 심해저에서 천연가스가 물과 결합해 고체로 변한 에너지 자원입니다. 독도 인근에 약 6억 톤가량 매장되어 있으며, 외형 때문에 '불타는 얼음'이라고도 불립니다.", badgeColor: "bg-amber-100 text-amber-700 border-amber-200" }
+        ];
+
+        const gridContainer = document.getElementById('terms-grid');
+        const noResultsMsg = document.getElementById('no-results');
+        let currentCategory = 'all';
+
+        // 카테고리 뱃지 라벨 변환 헬퍼
+        const getCategoryLabel = (cat) => {
+            const labels = {
+                '영역': '국가 영역',
+                '명칭': '역사적 명칭',
+                '국제관계': '국제 관계 및 사건',
+                '지질자원': '지질 및 자원'
+            };
+            return labels[cat] || cat;
+        };
+
+        // 렌더링 함수
+        function renderTerms() {
+            gridContainer.innerHTML = '';
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            
+            // 데이터 필터링
+            const filteredTerms = termsData.filter(item => {
+                const matchCategory = currentCategory === 'all' || item.category === currentCategory;
+                const matchSearch = item.term.toLowerCase().includes(searchQuery) || 
+                                    item.definition.toLowerCase().includes(searchQuery) ||
+                                    (item.subCategory && item.subCategory.toLowerCase().includes(searchQuery));
+                return matchCategory && matchSearch;
+            });
+
+            if (filteredTerms.length === 0) {
+                gridContainer.style.display = 'none';
+                noResultsMsg.classList.remove('hidden');
+                noResultsMsg.classList.add('flex');
+                return;
+            } else {
+                gridContainer.style.display = 'grid';
+                noResultsMsg.classList.add('hidden');
+                noResultsMsg.classList.remove('flex');
+            }
+
+            // HTML 카드 생성
+            filteredTerms.forEach((item) => {
+                const subCatHTML = item.subCategory 
+                    ? `<span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded ml-2">${item.subCategory}</span>` 
+                    : '';
+
+                const cardHTML = `
+                    <div class="term-card bg-white rounded-xl shadow border border-slate-100 p-6 flex flex-col h-full">
+                        <div class="mb-4 flex items-start justify-between">
+                            <div>
+                                <span class="inline-block px-2.5 py-1 rounded-md text-[11px] font-bold tracking-wide border uppercase mb-3 ${item.badgeColor}">
+                                    ${getCategoryLabel(item.category)}
+                                </span>
+                                <h3 class="title-font text-2xl font-bold text-slate-800 flex items-center flex-wrap gap-y-2">
+                                    ${item.term} ${subCatHTML}
+                                </h3>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed text-[15px] flex-grow">
+                            ${item.definition.replace(/'불타는 얼음'/g, "<span class='font-bold text-amber-600'>'불타는 얼음'</span>").replace(/「대한제국 칙령 제41호」/g, "<span class='font-bold text-blue-600'>「대한제국 칙령 제41호」</span>")}
+                        </p>
+                    </div>
+                `;
+                gridContainer.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
+
+        // 필터링 버튼 동작
+        function filterTerms(category) {
+            currentCategory = category;
+            
+            // 탭 스타일 활성화/비활성화 처리
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.target === category) {
+                    btn.classList.remove('bg-slate-100', 'text-slate-600');
+                    btn.classList.add('bg-blue-600', 'text-white', 'shadow-sm');
+                } else {
+                    btn.classList.remove('bg-blue-600', 'text-white', 'shadow-sm');
+                    btn.classList.add('bg-slate-100', 'text-slate-600');
+                }
+            });
+
+            renderTerms();
+        }
+
+        // 검색창 이벤트
+        document.getElementById('searchInput').addEventListener('input', () => {
+            renderTerms();
+        });
+
+        // 초기 데이터 로드
+        window.addEventListener('DOMContentLoaded', () => {
+            renderTerms();
+        });
+    </script>
+</body>
+</html>
